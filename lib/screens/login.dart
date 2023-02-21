@@ -1,3 +1,4 @@
+import 'package:audit_finance_app/screens/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -48,7 +49,12 @@ class _LogInState extends State<LogIn> {
                 ),
               ),
               onTap: () {
-                //Navigator.push(context, MaterialPageRoute(builder: (context) => const ))
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ForgotPassword(),
+                  ),
+                );
               },
             ),
             const SizedBox(
