@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 991.04 786.21">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: .25;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <image class="cls-1" width="64" height="64" transform="translate(25.3 421.09) scale(2.37)" xlink:href="../../../../../../downloads/icons8-multiply-64.png"/>
+    <image class="cls-1" width="90" height="90" transform="translate(848.71 32.11) scale(1.58)" xlink:href="../../../../../../downloads/icons8-plus-math-90.png"/>
+    <image class="cls-1" width="90" height="90" transform="translate(393.03) scale(1.58)" xlink:href="../../../../../../downloads/icons8-subtract-90.png"/>
+    <image class="cls-1" width="96" height="96" transform="translate(407.01 572.91) scale(2.22)" xlink:href="../../../../../../downloads/icons8-card-payment-96.png"/>
+    <image class="cls-1" width="64" height="64" transform="translate(0 53.77) scale(2.77)" xlink:href="../../../../../../downloads/icons8-card-wallet-64.png"/>
+    <image class="cls-1" width="96" height="96" transform="translate(685.13 195.76) scale(1.98)" xlink:href="../../../../../../downloads/icons8-donate-96.png"/>
+    <image class="cls-1" width="90" height="90" transform="translate(335.85 290.86) scale(1.58)" xlink:href="../../../../../../downloads/icons8-equal-sign-90.png"/>
+  </g>
+</svg>
