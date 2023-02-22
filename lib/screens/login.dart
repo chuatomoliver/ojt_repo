@@ -1,4 +1,6 @@
 import 'package:audit_finance_app/screens/forgot_password.dart';
+import 'package:audit_finance_app/screens/registration.dart';
+import 'package:audit_finance_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -61,8 +63,24 @@ class _LogInState extends State<LogIn> {
               height: 15,
             ),
             FilledButton(
+              style: FilledButton.styleFrom(
+                minimumSize: const Size.fromHeight(50),),
               onPressed: () {},
               child: const Text('Login'),
+            ),
+            Widgets().sizedBoxHeight(10),
+            FilledButton(
+              style: FilledButton.styleFrom(
+                minimumSize: const Size.fromHeight(50),),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Registration(),
+                  ),
+                );
+              },
+              child: const Text('Register'),
             ),
           ],
         ),
