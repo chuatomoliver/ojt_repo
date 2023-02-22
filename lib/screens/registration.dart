@@ -1,3 +1,4 @@
+import 'package:audit_finance_app/screens/login.dart';
 import 'package:audit_finance_app/widgets/registration_widgets.dart';
 import 'package:audit_finance_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -76,8 +77,15 @@ class _RegistrationState extends State<Registration> {
             Widgets().sizedBoxHeight(20),
             FilledButton(
               onPressed: () {
-                if(_formKey.currentState!.validate()) {
+                if (_formKey.currentState!.validate()) {
                   // do something
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LogIn(),
+                    ),
+                  );
+
                   Fluttertoast.showToast(
                     toastLength: Toast.LENGTH_SHORT,
                     msg: 'Registration complete',
@@ -88,7 +96,8 @@ class _RegistrationState extends State<Registration> {
                 }
               },
               style: FilledButton.styleFrom(
-                minimumSize: const Size.fromHeight(50),),
+                minimumSize: const Size.fromHeight(50),
+              ),
               child: const Text('Register'),
             ),
           ],

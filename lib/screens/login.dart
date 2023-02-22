@@ -2,8 +2,6 @@ import 'package:audit_finance_app/screens/forgot_password.dart';
 import 'package:audit_finance_app/screens/registration.dart';
 import 'package:audit_finance_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -64,14 +62,16 @@ class _LogInState extends State<LogIn> {
             ),
             FilledButton(
               style: FilledButton.styleFrom(
-                minimumSize: const Size.fromHeight(50),),
+                minimumSize: const Size.fromHeight(50),
+              ),
               onPressed: () {},
               child: const Text('Login'),
             ),
             Widgets().sizedBoxHeight(10),
             FilledButton(
               style: FilledButton.styleFrom(
-                minimumSize: const Size.fromHeight(50),),
+                minimumSize: const Size.fromHeight(50),
+              ),
               onPressed: () {
                 Navigator.push(
                   context,

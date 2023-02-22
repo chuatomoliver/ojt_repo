@@ -5,7 +5,9 @@ class RegistrationWidgets {
     return Text(text);
   }
 
-  Widget textField({required TextEditingController textEditingController, required String hint}) {
+  Widget textField(
+      {required TextEditingController textEditingController,
+      required String hint}) {
     return TextFormField(
       controller: textEditingController,
       decoration: InputDecoration(
