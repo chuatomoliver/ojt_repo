@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/user_info.dart';
+import '/models/user_info.dart';
 
 class Registration extends StatefulWidget {
   const Registration({super.key});

@@ -1,11 +1,11 @@
 import 'package:audit_finance_app/constant/theme.dart';
 import 'package:audit_finance_app/widgets/widgets.dart';
-import 'package:audit_finance_app/screens/homescreen.dart';
+import 'package:audit_finance_app/screens/old/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
 
-import '../providers/states.dart';
+import '/providers/states.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});

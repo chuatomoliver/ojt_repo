@@ -43,6 +43,11 @@ dependencies:
   floating_bottom_navigation_bar: ^1.5.2
   contacts: ^2.0.0
   profile: ^0.0.1
+  permission_handler: ^10.2.0
+  path: ^1.8.2
+  path_provider: ^2.0.13
+  flutter_contacts: ^1.1.6
+  image_picker: ^0.8.6+4
 
 dev_dependencies:
   flutter_test:
