@@ -5,7 +5,7 @@ import 'package:audit_finance_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../models/user_info.dart';
+import '/models/user_info.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
