@@ -3,12 +3,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/states.dart';
 
 class Profile {
-  Widget profileBody(Function cameraPermission, File? imageView) {
+  Widget profileBody(Function cameraPermission, BuildContext context, Function function) {
     final imagePicker = ImagePicker();
+    final statesData = Provider.of<States>(context, listen: false);
 
-    Future<void> getImage(ImageSource imageSource) async {
+    Future<void> getImage(ImageSource imageSource,) async {
+      
       cameraPermission();
 
       final XFile? image = await imagePicker.pickImage(source: imageSource);
@@ -23,7 +28,8 @@ class Profile {
       }
       final path = join(dir.path, fileName);
       await image.saveTo('$path.png');
-      imageView = File(image.path);
+      statesData.image = File('$path.png');
+      function();
     }
 
     return Center(
@@ -34,9 +40,10 @@ class Profile {
             child: Stack(
               alignment: Alignment.bottomRight,
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 100,
-                  // child: imageView == null ? const Text('O') : Image.file(imageView!),
+                  backgroundImage: statesData.image == null ? null : FileImage(statesData.image!),
+                  // child: statesData.image == null ? const Text('O') : Image.file(statesData.image!),
                 ),
                 CircleAvatar(
                   radius: 30,

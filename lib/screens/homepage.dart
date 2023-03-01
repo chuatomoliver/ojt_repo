@@ -77,7 +77,9 @@ class _HomepageState extends State<Homepage> {
           ? Contacts().contactBody(contacts, statesData.contactPermission)
           : index == 1
               ? homepageBody()
-              : Profile().profileBody(cameraPermission, statesData.image),
+              : Profile().profileBody(cameraPermission, context, () {
+                setState(() { });
+              }),
       extendBody: true,
       bottomNavigationBar: FloatingNavbar(
         currentIndex: index,
