@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../providers/states.dart';
 import '../screens/contacts.dart';
 import '../screens/profile.dart';
+import 'package:location/location.dart' as loc;
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -32,7 +33,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   void cameraPermission() async {
-    if(!await Permission.camera.status.isGranted) {
+    if (!await Permission.camera.status.isGranted) {
       permissionRequest(Permission.camera);
       if (!await permissionRequest(Permission.manageExternalStorage)) {
         permissionRequest(Permission.manageExternalStorage);
@@ -52,10 +53,27 @@ class _HomepageState extends State<Homepage> {
       }
     } else {
       contacts = await FlutterContacts.getContacts(
-            withProperties: true, withPhoto: true);
-        setState(() {});
+          withProperties: true, withPhoto: true);
+      setState(() {});
       return true;
     }
+  }
+
+  Future<void> getLocation() async {
+    if (!await Permission.location.status.isGranted) {
+      if (!await permissionRequest(Permission.location)) {
+        return;
+      }
+    }
+
+    loc.Location location = loc.Location();
+    // var currentLocation = location.getLocation().;
+    loc.LocationData whereYou ;
+    whereYou = await location.getLocation();
+    // print('-------------------------------------------------------------');
+    // print('Latitude: ${whereYou.latitude} | Longitude: ${whereYou.longitude}');
+    // print('-------------------------------------------------------------');
+    // var loc = location.Location
   }
 
   @override
@@ -67,6 +85,7 @@ class _HomepageState extends State<Homepage> {
         statesData.contactPermission = true;
       }
     });
+    // getLocation();
   }
 
   @override
@@ -78,8 +97,8 @@ class _HomepageState extends State<Homepage> {
           : index == 1
               ? homepageBody()
               : Profile().profileBody(cameraPermission, context, () {
-                setState(() { });
-              }),
+                  setState(() {});
+                }),
       extendBody: true,
       bottomNavigationBar: FloatingNavbar(
         currentIndex: index,
