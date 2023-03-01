@@ -1,7 +1,9 @@
 import 'package:audit_finance_app/screens/cplus_login.dart';
 import 'package:audit_finance_app/screens/cplus_register.dart';
+import 'package:audit_finance_app/screens/login.dart';
 import 'package:audit_finance_app/screens/permissions.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -11,6 +13,18 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
+  late SharedPreferences preferences;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    init();
+  }
+
+  Future init() async {
+    preferences = await SharedPreferences.getInstance();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -28,10 +42,12 @@ class _LandingPageState extends State<LandingPage> {
               height: 50,
               child: FilledButton(
                 onPressed: () {
+                  int? x = preferences.getInt('perm');
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Permissions(),
+                      builder: (context) =>
+                          x == 3 ? const LogIn() : const Permissions(),
                     ),
                   );
                 },
