@@ -1,4 +1,7 @@
 import 'package:audit_finance_app/providers/states.dart';
+import 'package:audit_finance_app/screens/cplus_landingpage.dart';
+import 'package:audit_finance_app/screens/cplus_login.dart';
+import 'package:audit_finance_app/screens/cplus_register.dart';
 import 'package:audit_finance_app/screens/homepage.dart';
 import 'package:audit_finance_app/screens/login.dart';
 import 'package:audit_finance_app/screens/old/home_screen.dart';
@@ -30,9 +33,9 @@ class MyApp extends StatelessWidget {
           systemOverlayStyle:
               SystemUiOverlayStyle(statusBarColor: Colors.transparent),
         ),
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
-      home: const Homepage(),
+      home: const LandingPage(),
     );
   }
 }
