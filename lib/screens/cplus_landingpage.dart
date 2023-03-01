@@ -35,6 +35,7 @@ class _LandingPageState extends State<LandingPage> {
                     ),
                   );
                 },
+                //PROCEED TO PERMISSIONS
                 child: const Text(
                   'Proceed',
                 ),

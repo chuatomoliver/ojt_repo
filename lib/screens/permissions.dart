@@ -32,6 +32,7 @@ class _PermissionsState extends State<Permissions> {
             child: SizedBox(
               width: 300,
               height: 50,
+              //ALLOW PERMISSION
               child: FilledButton(
                 onPressed: () {
                   Navigator.push(

@@ -20,6 +20,7 @@ class _LoginState extends State<Login> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 30),
+              //USERNAME GOES HERE
               child: TextFormField(
                 decoration: const InputDecoration(
                   filled: true,
@@ -30,6 +31,7 @@ class _LoginState extends State<Login> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30),
+              //PASSWORD GOES HERE
               child: TextFormField(
                 obscureText: true,
                 decoration: const InputDecoration(
@@ -41,6 +43,7 @@ class _LoginState extends State<Login> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 50),
+              //LOGIN BUTTON
               child: SizedBox(
                 width: 300,
                 height: 50,
@@ -61,6 +64,7 @@ class _LoginState extends State<Login> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, bottom: 50),
+              //REGISTER BUTTON
               child: SizedBox(
                 width: 300,
                 height: 50,

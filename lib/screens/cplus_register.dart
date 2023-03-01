@@ -21,6 +21,7 @@ class _RegisterState extends State<Register> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 30),
+              //ENTER USERNAME
               child: TextFormField(
                 decoration: InputDecoration(
                   filled: true,
@@ -34,6 +35,7 @@ class _RegisterState extends State<Register> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30),
+              //ENTER PASSWORD
               child: TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
@@ -48,6 +50,7 @@ class _RegisterState extends State<Register> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30),
+              //REENTER PASSWORD
               child: TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
@@ -62,6 +65,7 @@ class _RegisterState extends State<Register> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30, bottom: 50),
+              //CONFIRM REGISTER BUTTON
               child: SizedBox(
                 width: 300,
                 height: 50,
