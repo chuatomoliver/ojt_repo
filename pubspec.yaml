@@ -39,6 +39,10 @@ dependencies:
   provider: ^6.0.5
   fluttertoast: ^8.2.1
   http: ^0.13.5
+  floating_navbar: ^2.0.2
+  floating_bottom_navigation_bar: ^1.5.2
+  contacts: ^2.0.0
+  profile: ^0.0.1
 
 dev_dependencies:
   flutter_test:

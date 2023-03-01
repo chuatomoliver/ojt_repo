@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
-import 'package:flutter_activity_1/screens/contacts.dart';
-import 'package:flutter_activity_1/screens/profile.dart';
+import '../screens/contacts.dart';
+import '../screens/profile.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
