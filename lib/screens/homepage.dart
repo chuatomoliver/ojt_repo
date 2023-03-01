@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import '../providers/states.dart';
@@ -68,7 +69,7 @@ class _HomepageState extends State<Homepage> {
 
     loc.Location location = loc.Location();
     // var currentLocation = location.getLocation().;
-    loc.LocationData whereYou ;
+    loc.LocationData whereYou;
     whereYou = await location.getLocation();
     // print('-------------------------------------------------------------');
     // print('Latitude: ${whereYou.latitude} | Longitude: ${whereYou.longitude}');
@@ -121,7 +122,7 @@ class _HomepageState extends State<Homepage> {
         },
         items: [
           FloatingNavbarItem(icon: Icons.contacts),
-          FloatingNavbarItem(icon: Icons.home),
+          FloatingNavbarItem(icon: Icons.location_on),
           FloatingNavbarItem(icon: Icons.person),
         ],
       ),
@@ -129,8 +130,20 @@ class _HomepageState extends State<Homepage> {
   }
 }
 
+const LatLng sourceLocation = LatLng(14.485120, 121.230820);
+const LatLng destination = LatLng(14.885120, 121.430820);
+
 Widget homepageBody() {
-  return const Center(
-    child: Text('Homepage'),
+  return Center(
+    child: GoogleMap(
+      initialCameraPosition:
+          const CameraPosition(target: sourceLocation, zoom: 14.5),
+      markers: {
+        const Marker(
+          markerId: MarkerId("source"),
+          position: sourceLocation,
+        ),
+      },
+    ),
   );
 }
