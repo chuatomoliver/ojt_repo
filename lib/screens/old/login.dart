@@ -111,23 +111,25 @@ class _LogInState extends State<LogIn> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     checkUser(usernameController.text, passwordController.text)
-                        .then((value) {
-                      if (value == 200) {
-                        if (!userInfo['error']) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomePage(),
-                            ),
-                          );
+                        .then(
+                      (value) {
+                        if (value == 200) {
+                          if (!userInfo['error']) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomePage(),
+                              ),
+                            );
+                          } else {
+                            debugPrint('NO DATA');
+                          }
                         } else {
-                          debugPrint('NO DATA');
+                          debugPrint(
+                              'Failed to get user info. Status code: $value');
                         }
-                      } else {
-                        debugPrint(
-                            'Failed to get user info. Status code: $value');
-                      }
-                    });
+                      },
+                    );
                   }
                 },
                 child: const Text('Login'),

@@ -1,6 +1,5 @@
 import 'package:audit_finance_app/screens/cplus_login.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -66,14 +65,14 @@ class _PermissionsState extends State<Permissions> {
                       if (x < permissions.length - 1) {
                         increment();
                       } else {
-                        print(x);
                         preferences.setInt('perm', x);
-                        Navigator.push(
+                        Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                             //only the final ask_permission leads to login()
                             builder: (context) => const Login(),
                           ),
+                          ModalRoute.withName('/'),
                         );
                       }
                     }
