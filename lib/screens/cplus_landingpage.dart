@@ -38,7 +38,7 @@ class _LandingPageState extends State<LandingPage> {
             end: Alignment.bottomRight,
             colors: [
               Colors.red,
-              Colors.pink,
+              Colors.purple,
             ],
           ),
         ),

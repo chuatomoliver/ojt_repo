@@ -109,7 +109,7 @@ class _PermissionsState extends State<Permissions> {
                       end: Alignment.bottomRight,
                       colors: [
                         Colors.red,
-                        Colors.pink,
+                        Colors.purple,
                       ],
                     ),
                   ),
