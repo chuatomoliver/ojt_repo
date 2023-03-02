@@ -5,6 +5,7 @@ import 'package:audit_finance_app/screens/cplus_register.dart';
 import 'package:audit_finance_app/screens/homepage.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -44,17 +45,57 @@ class _LoginState extends State<Login> {
       child: Padding(
         padding: const EdgeInsets.only(left: 30, right: 30),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              style: TextStyle(
+                fontSize: 42,
+                fontWeight: FontWeight.bold,
+                foreground: Paint()
+                  ..shader = const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[
+                      Colors.red,
+                      Colors.purple,
+                      //add more color here.
+                    ],
+                  ).createShader(
+                    const Rect.fromLTWH(
+                      0.0,
+                      0.0,
+                      400.0,
+                      100.0,
+                    ),
+                  ),
+              ),
+              'Contacts+',
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 30),
               //USERNAME GOES HERE
               child: TextFormField(
                 controller: usernameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Colors.black.withOpacity(0.1),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25),
+                    borderSide: const BorderSide(
+                      color: Colors.transparent,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                    ),
+                  ),
                   hintText: 'Enter your username',
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 20,
+                  ),
                 ),
               ),
             ),
@@ -64,10 +105,26 @@ class _LoginState extends State<Login> {
               child: TextFormField(
                 controller: passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Colors.black.withOpacity(0.1),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25),
+                    borderSide: const BorderSide(
+                      color: Colors.transparent,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                    ),
+                  ),
                   hintText: 'Enter your password',
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 20,
+                  ),
                 ),
               ),
             ),
@@ -77,7 +134,13 @@ class _LoginState extends State<Login> {
               child: SizedBox(
                 width: 300,
                 height: 50,
-                child: FilledButton(
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
                   onPressed: () {
                     // checkUserInfo('test', 'test');
                     checkUserInfo(
@@ -105,8 +168,31 @@ class _LoginState extends State<Login> {
                       },
                     );
                   },
-                  child: const Text(
-                    'Login',
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Colors.red,
+                          Colors.purple,
+                        ],
+                      ),
+                    ),
+                    child: Container(
+                      height: 50,
+                      width: 300,
+                      alignment: Alignment.center,
+                      child: const Text(
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 22,
+                        ),
+                        'Login',
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -117,7 +203,13 @@ class _LoginState extends State<Login> {
               child: SizedBox(
                 width: 300,
                 height: 50,
-                child: FilledButton(
+                child: OutlinedButton(
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -126,8 +218,31 @@ class _LoginState extends State<Login> {
                       ),
                     );
                   },
-                  child: const Text(
-                    'Don\'t have an account? Register',
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Colors.red,
+                          Colors.purple,
+                        ],
+                      ),
+                    ),
+                    child: Container(
+                      height: 50,
+                      width: 300,
+                      alignment: Alignment.center,
+                      child: const Text(
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 22,
+                        ),
+                        'Register',
+                      ),
+                    ),
                   ),
                 ),
               ),
