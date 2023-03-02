@@ -30,22 +30,22 @@ class UserInfo {
 }
 
 class Payload {
-  String? firstName;
-  String? lastName;
+  String? first_name;
+  String? last_name;
   String? birthday;
   String? gender;
   String? mobile;
 
   Payload(
-      {required this.firstName,
-      required this.lastName,
+      {required this.first_name,
+      required this.last_name,
       required this.birthday,
       required this.gender,
       required this.mobile});
 
   Payload.fromJson(Map<String, dynamic> json) {
-    firstName = json['first_name'];
-    lastName = json['last_name'];
+    first_name = json['first_name'];
+    last_name = json['last_name'];
     birthday = json['birthday'];
     gender = json['gender'];
     mobile = json['mobile'];
@@ -53,8 +53,8 @@ class Payload {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['first_name'] = firstName;
-    data['last_name'] = lastName;
+    data['first_name'] = first_name;
+    data['last_name'] = last_name;
     data['birthday'] = birthday;
     data['gender'] = gender;
     data['mobile'] = mobile;

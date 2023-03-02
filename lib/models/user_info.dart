@@ -1,20 +1,23 @@
+import 'package:json_annotation/json_annotation.dart';
+
+@JsonSerializable()
 class RegistrationInfo {
-  String? first_name;
-  String? last_name;
+  String? firstName;
+  String? lastName;
   String? birthday;
   String? gender;
   String? mobile;
 
   RegistrationInfo(
-      {required this.first_name,
-      required this.last_name,
+      {required this.firstName,
+      required this.lastName,
       required this.birthday,
       required this.gender,
       required this.mobile});
 
   RegistrationInfo.fromJson(Map<String, dynamic> json) {
-    first_name = json['first_name'];
-    last_name = json['last_name'];
+    firstName = json['first_name'];
+    lastName = json['last_name'];
     birthday = json['birthday'];
     gender = json['gender'];
     mobile = json['mobile'];
@@ -22,8 +25,8 @@ class RegistrationInfo {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['first_name'] = first_name;
-    data['last_name'] = last_name;
+    data['first_name'] = firstName;
+    data['last_name'] = lastName;
     data['birthday'] = birthday;
     data['gender'] = gender;
     data['mobile'] = mobile;

@@ -1,8 +1,7 @@
-import 'dart:convert';
-
-import 'package:audit_finance_app/models/user_info.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
+import '../models/user.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -12,7 +11,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  final dio = Dio();
+  final _dio = Dio();
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -22,32 +21,42 @@ class _RegisterState extends State<Register> {
 
   final _formKey = GlobalKey<FormState>();
 
-  void registerUser(RegistrationInfo registrationInfo) async {
-    dio.options.headers['Content-Type'] = 'application/json; charset=UTF-8';
-    // print(registrationInfo.first_name);
-    // print(registrationInfo.last_name);
-    // print(registrationInfo.birthday);
-    // print(registrationInfo.gender);
-    // print(registrationInfo.mobile);
-    print(registrationInfo.toJson());
+  // Future<void> registerUser(RegistrationInfo registrationInfo) async {
+  //   // print(registrationInfo.first_name);
+  //   // print(registrationInfo.last_name);
+  //   // print(registrationInfo.birthday);
+  //   // print(registrationInfo.gender);
+  //   // print(registrationInfo.mobile);
+  //   debugPrint(jsonEncode(registrationInfo.toJson()));
+  //   debugPrint(registrationInfo.toJson().toString());
+  //   try {
+  //     final response = await dio.post(
+  //       'http://localhost/api/v1/index.php/registration',
+  //       data: json.encode(registrationInfo.toJson()),
+  //     );
+  //     debugPrint(response.data.toString());
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+
+  Future<User?> registerUser({required User user}) async {
+    User? retrievedUser;
+
     try {
-      var response = await dio.post(
+      Response response = await _dio.post(
         'http://localhost/api/v1/index.php/registration',
-        data: jsonEncode(
-          {
-            'first_name': 'eyy',
-            'last_name': 'eyy',
-            'birthday': 'eyy',
-            'gender': 'eyy',
-            'mobile': 'eyy',
-          },
-        ),
+        data: user.toJson(),
       );
-      debugPrint(response.statusCode.toString());
-      debugPrint(response.data.toString());
+
+      print('User created: ${response.data}');
+
+      retrievedUser = User.fromJson(response.data);
     } catch (e) {
-      print(e);
+      print('Error creating user: $e');
     }
+
+    return retrievedUser;
   }
 
   @override
@@ -167,16 +176,18 @@ class _RegisterState extends State<Register> {
                 width: 300,
                 height: 50,
                 child: FilledButton(
-                  onPressed: () {
-                    registerUser(
-                      RegistrationInfo(
-                        first_name: 'first_name',
-                        last_name: 'last_name',
-                        birthday: 'birthday',
-                        gender: 'gender',
-                        mobile: 'mobile',
-                      ),
+                  onPressed: () async {
+                    User userInfo = User(
+                      firstName: firstNameController.text,
+                      lastName: lastNameController.text,
+                      birthday: birthdayController.text,
+                      gender: genderController.text,
+                      mobile: mobileController.text,
                     );
+
+                    User? retrievedUser = await registerUser(user: userInfo);
+
+                    print(retrievedUser);
                     // if (_formKey.currentState!.validate()) {
 
                     // }

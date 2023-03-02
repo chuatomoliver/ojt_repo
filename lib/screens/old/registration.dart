@@ -63,7 +63,7 @@ class _RegistrationState extends State<Registration> {
         } else {
           userInfo['payload']!.forEach((e) {
             final info = RegistrationInfo.fromJson(e);
-            debugPrint(info.first_name);
+            debugPrint(info.firstName);
           });
         }
       } else {
