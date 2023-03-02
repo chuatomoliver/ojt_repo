@@ -1,10 +1,6 @@
 import 'package:audit_finance_app/providers/states.dart';
 import 'package:audit_finance_app/screens/cplus_landingpage.dart';
 import 'package:audit_finance_app/screens/cplus_login.dart';
-import 'package:audit_finance_app/screens/cplus_register.dart';
-import 'package:audit_finance_app/screens/homepage.dart';
-import 'package:audit_finance_app/screens/login.dart';
-import 'package:audit_finance_app/screens/old/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -29,13 +25,14 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'Poppins',
         appBarTheme: const AppBarTheme(
           systemOverlayStyle:
               SystemUiOverlayStyle(statusBarColor: Colors.transparent),
         ),
         primarySwatch: Colors.blueGrey,
       ),
-      home: const LandingPage(),
+      home: const Login(),
     );
   }
 }
