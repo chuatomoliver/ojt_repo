@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constant/constants.dart';
 import '../providers/states.dart';
+import '../widgets/login_widgets.dart';
 
 class Permissions extends StatefulWidget {
   const Permissions({super.key});
@@ -75,13 +76,8 @@ class _PermissionsState extends State<Permissions> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 40),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                ),
+              child: filledButton(
+                text: 'Allow',
                 onPressed: () {
                   statesData.permissionRequest(permissions[x]).then((value) {
                     if (value) {
@@ -101,33 +97,60 @@ class _PermissionsState extends State<Permissions> {
                     }
                   });
                 },
-                child: Ink(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Colors.red,
-                        Colors.purple,
-                      ],
-                    ),
-                  ),
-                  child: Container(
-                    height: 50,
-                    width: 300,
-                    alignment: Alignment.center,
-                    child: const Text(
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 22,
-                      ),
-                      'Allow',
-                    ),
-                  ),
-                ),
               ),
+              // child: FilledButton(
+              //   style: FilledButton.styleFrom(
+              //     padding: EdgeInsets.zero,
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(25),
+              //     ),
+              //   ),
+              //   onPressed: () {
+              //     statesData.permissionRequest(permissions[x]).then((value) {
+              //       if (value) {
+              //         if (x < permissions.length - 1) {
+              //           increment();
+              //         } else {
+              //           preferences.setInt('perm', x);
+              //           Navigator.pushAndRemoveUntil(
+              //             context,
+              //             MaterialPageRoute(
+              //               //only the final ask_permission leads to login()
+              //               builder: (context) => const Login(),
+              //             ),
+              //             ModalRoute.withName('/'),
+              //           );
+              //         }
+              //       }
+              //     });
+              //   },
+              //   child: Ink(
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(25),
+              //       gradient: const LinearGradient(
+              //         begin: Alignment.topLeft,
+              //         end: Alignment.bottomRight,
+              //         colors: [
+              //           Colors.red,
+              //           Colors.purple,
+              //         ],
+              //       ),
+              //     ),
+              //     child: Container(
+              //       height: 50,
+              //       width: 300,
+              //       alignment: Alignment.center,
+              //       child: Text(
+              //         style: const TextStyle(
+              //           fontWeight: FontWeight.bold,
+              //           color: Colors.white,
+              //           fontSize: 20,
+              //         ),
+              //         'Allow',
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ),
           ],
         ),

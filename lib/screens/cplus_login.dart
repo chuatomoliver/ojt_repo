@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:audit_finance_app/models/user_information.dart';
 import 'package:audit_finance_app/screens/cplus_register.dart';
 import 'package:audit_finance_app/screens/homepage.dart';
+import 'package:audit_finance_app/widgets/login_widgets.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
@@ -49,156 +50,73 @@ class _LoginState extends State<Login> {
       child: Padding(
         padding: const EdgeInsets.only(left: 30, right: 30),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(
-              style: TextStyle(
-                fontSize: 42,
-                fontWeight: FontWeight.bold,
-                foreground: Paint()
-                  ..shader = const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: <Color>[
-                      Colors.red,
-                      Colors.purple,
-                      //add more color here.
-                    ],
-                  ).createShader(
-                    const Rect.fromLTWH(
-                      0.0,
-                      0.0,
-                      400.0,
-                      100.0,
-                    ),
-                  ),
-              ),
-              'Contacts+',
-            ),
+            titleText(),
             Padding(
-              padding: const EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 50),
               //USERNAME GOES HERE
-              child: TextFormField(
-                controller: usernameController,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.black.withOpacity(0.1),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: const BorderSide(
-                      color: Colors.transparent,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: const BorderSide(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  hintText: 'Enter your username',
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 20,
-                  ),
-                ),
+              child: textFormField(
+                textEditingController: usernameController,
+                hint: 'Enter your username',
+                obscureText: false,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30),
               //PASSWORD GOES HERE
-              child: TextFormField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.black.withOpacity(0.1),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: const BorderSide(
-                      color: Colors.transparent,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: const BorderSide(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  hintText: 'Enter your password',
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 20,
-                  ),
-                ),
+              child: textFormField(
+                textEditingController: usernameController,
+                hint: 'Enter your password',
+                obscureText: false,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 50),
+              padding: const EdgeInsets.only(top: 20.0),
+              child: themedText(
+                text: 'Having trouble signing in?',
+                textDecor: TextDecoration.underline,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 80),
               //LOGIN BUTTON
-              child: SizedBox(
-                width: 300,
-                height: 50,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
+              child: filledButton(
+                text: 'Login',
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Homepage(),
                     ),
-                  ),
-                  onPressed: () {
-                    // checkUserInfo('test', 'test');
-                    checkUserInfo(
-                      usernameController.text,
-                      passwordController.text,
-                    ).then(
-                      (value) {
-                        debugPrint(value.toString());
-                        if (value == 200) {
-                          if (!userInfo.error) {
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Homepage(),
-                              ),
-                              ModalRoute.withName('/'),
-                            );
-                          } else {
-                            debugPrint('NO DATA');
-                          }
-                        } else {
-                          debugPrint(
-                              'Failed to get user info. Status code: $value');
-                        }
-                      },
-                    );
-                  },
-                  child: Ink(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Colors.red,
-                          Colors.purple,
-                        ],
-                      ),
-                    ),
-                    child: Container(
-                      height: 50,
-                      width: 300,
-                      alignment: Alignment.center,
-                      child: const Text(
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 22,
-                        ),
-                        'Login',
-                      ),
-                    ),
-                  ),
-                ),
+                    ModalRoute.withName('/'),
+                  );
+                  // checkUserInfo('test', 'test');
+                  // checkUserInfo(
+                  //   usernameController.text,
+                  //   passwordController.text,
+                  // ).then(
+                  //   (value) {
+                  //     debugPrint(value.toString());
+                  //     if (value == 200) {
+                  //       if (!userInfo.error) {
+                  //         Navigator.pushAndRemoveUntil(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //             builder: (context) => const Homepage(),
+                  //           ),
+                  //           ModalRoute.withName('/'),
+                  //         );
+                  //       } else {
+                  //         debugPrint('NO DATA');
+                  //       }
+                  //     } else {
+                  //       debugPrint(
+                  //           'Failed to get user info. Status code: $value');
+                  //     }
+                  //   },
+                  // );
+                },
               ),
             ),
             Padding(
@@ -207,13 +125,8 @@ class _LoginState extends State<Login> {
               child: SizedBox(
                 width: 300,
                 height: 50,
-                child: OutlinedButton(
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                  ),
+                child: filledButton(
+                  text: 'Register',
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -222,32 +135,6 @@ class _LoginState extends State<Login> {
                       ),
                     );
                   },
-                  child: Ink(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Colors.red,
-                          Colors.purple,
-                        ],
-                      ),
-                    ),
-                    child: Container(
-                      height: 50,
-                      width: 300,
-                      alignment: Alignment.center,
-                      child: const Text(
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 22,
-                        ),
-                        'Register',
-                      ),
-                    ),
-                  ),
                 ),
               ),
             ),
