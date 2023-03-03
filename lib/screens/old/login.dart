@@ -5,7 +5,7 @@ import 'package:audit_finance_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '/models/user_info.dart';
+import '../../models/user_info.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -111,25 +111,23 @@ class _LogInState extends State<LogIn> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     checkUser(usernameController.text, passwordController.text)
-                        .then(
-                      (value) {
-                        if (value == 200) {
-                          if (!userInfo['error']) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const HomePage(),
-                              ),
-                            );
-                          } else {
-                            debugPrint('NO DATA');
-                          }
+                        .then((value) {
+                      if (value == 200) {
+                        if (!userInfo['error']) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            ),
+                          );
                         } else {
-                          debugPrint(
-                              'Failed to get user info. Status code: $value');
+                          debugPrint('NO DATA');
                         }
-                      },
-                    );
+                      } else {
+                        debugPrint(
+                            'Failed to get user info. Status code: $value');
+                      }
+                    });
                   }
                 },
                 child: const Text('Login'),
