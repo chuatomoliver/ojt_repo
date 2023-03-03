@@ -11,11 +11,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  final _dio = Dio(
-    BaseOptions(
-      baseUrl: 'http://localhost/api/v1/index.php',
-    ),
-  );
+  final _dio = Dio();
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -44,22 +40,51 @@ class _RegisterState extends State<Register> {
   //   }
   // }
 
-  Future<User?> registerUser({required User user}) async {
-    User? retrievedUser;
+  Future<bool> register(
+    String firstName,
+    String lastName,
+    String birthday,
+    String gender,
+    String mobile,
+  ) async {
+    const url = 'http://localhost/api/v1/index.php/registration';
+
+    final body = {
+      "first_name": firstName,
+      "last_name": lastName,
+      "birthday": birthday,
+      "gender": gender,
+      "mobile": mobile,
+    };
 
     try {
+      Response response;
+      response = await _dio.post(url, data: body);
+
+      if (response.statusCode == 200) {
+        print(response.data);
+        return true;
+      }
+      return true;
+    } on DioError catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<User?> registerUser({required User user}) async {
+    User? retrievedUser;
+    try {
       Response response = await _dio.post(
-        '/registration',
+        'http://localhost/api/v1/index.php/registration',
         data: user
             .toJson(), // THIS RETURNS STATUS CODE 400 AND IS SAID TO BE NULL
-        // I TRIED:
         // user.toJson()
         // jsonEncode(user.toJson())
         // json.encode(user.toJson())
         // FormData.fromMap(user.toJson())
         // FormData.fromMap(json.encode(user.toJson()))
         // I tried even the manual way like {'first_name': 'sample',...}
-        // i also enclosed it in json encode but still the same error
       );
 
       print('User created: ${response.data}');
@@ -150,7 +175,6 @@ class _RegisterState extends State<Register> {
                           ? 'Please enter some text'
                           : null,
                       controller: genderController,
-                      obscureText: true,
                       decoration: InputDecoration(
                         fillColor: Colors.white,
                         hintText: 'Enter your gender',
@@ -190,17 +214,27 @@ class _RegisterState extends State<Register> {
                 height: 50,
                 child: FilledButton(
                   onPressed: () async {
-                    User userInfo = User(
-                      first_name: firstNameController.text,
-                      last_name: lastNameController.text,
-                      birthday: birthdayController.text,
-                      gender: genderController.text,
-                      mobile: mobileController.text,
-                    );
+                    setState(() {
+                      register(
+                        firstNameController.text,
+                        lastNameController.text,
+                        birthdayController.text,
+                        genderController.text,
+                        mobileController.text,
+                      );
+                    });
 
-                    User? retrievedUser = await registerUser(user: userInfo);
+                    // User userInfo = User(
+                    //   first_name: firstNameController.text,
+                    //   last_name: lastNameController.text,
+                    //   birthday: birthdayController.text,
+                    //   gender: genderController.text,
+                    //   mobile: mobileController.text,
+                    // );
 
-                    print(retrievedUser);
+                    // User? retrievedUser = await registerUser(user: userInfo);
+
+                    // print(retrievedUser);
                     // if (_formKey.currentState!.validate()) {
 
                     // }

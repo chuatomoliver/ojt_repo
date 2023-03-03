@@ -18,7 +18,7 @@ class TempData {
     'Laptop',
     'Retirement',
   ];
-  
+
   static const List<Color> transactionColor = [
     Color(0xff6C18A4),
     Color(0xff3827B4),
