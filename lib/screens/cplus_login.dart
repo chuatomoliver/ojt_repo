@@ -17,10 +17,14 @@ class Login extends StatefulWidget {
 var userInfo;
 
 class _LoginState extends State<Login> {
-  final dio = Dio();
+  final dio = Dio(
+    BaseOptions(
+      baseUrl: 'http://localhost/api/v1/index.php',
+    ),
+  );
   Future<int?> checkUserInfo(String firstName, String lastName) async {
     final response = await dio.get(
-      'http://localhost/api/v1/index.php/checkUserExist',
+      '/checkUserExist',
       queryParameters: {'first_name': firstName, 'last_name': lastName},
     );
     userInfo = UserInfo.fromJson(response.data);

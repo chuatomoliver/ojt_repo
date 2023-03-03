@@ -9,5 +9,6 @@ class DioClient {
   //     connectTimeout: 5000,
   //     receiveTimeout: 3000,
   //   ),
-  // )..interceptors.add(Logging());
+  // );
+  // ..interceptors.add(Logging());
 }

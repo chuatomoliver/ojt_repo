@@ -4,17 +4,15 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class User {
-  String? id;
-  String firstName;
-  String lastName;
+  String first_name;
+  String last_name;
   String birthday;
   String gender;
   String mobile;
 
   User(
-      {this.id,
-      required this.firstName,
-      required this.lastName,
+      {required this.first_name,
+      required this.last_name,
       required this.birthday,
       required this.gender,
       required this.mobile});

@@ -1,6 +1,7 @@
 import 'package:audit_finance_app/providers/states.dart';
 import 'package:audit_finance_app/screens/cplus_landingpage.dart';
 import 'package:audit_finance_app/screens/cplus_login.dart';
+import 'package:audit_finance_app/screens/cplus_register.dart';
 import 'package:audit_finance_app/screens/permissions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
         primarySwatch: Colors.blueGrey,
       ),
-      home: const Login(),
+      home: const Register(),
     );
   }
 }

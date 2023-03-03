@@ -11,7 +11,11 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  final _dio = Dio();
+  final _dio = Dio(
+    BaseOptions(
+      baseUrl: 'http://localhost/api/v1/index.php',
+    ),
+  );
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -45,8 +49,17 @@ class _RegisterState extends State<Register> {
 
     try {
       Response response = await _dio.post(
-        'http://localhost/api/v1/index.php/registration',
-        data: user.toJson(),
+        '/registration',
+        data: user
+            .toJson(), // THIS RETURNS STATUS CODE 400 AND IS SAID TO BE NULL
+        // I TRIED:
+        // user.toJson()
+        // jsonEncode(user.toJson())
+        // json.encode(user.toJson())
+        // FormData.fromMap(user.toJson())
+        // FormData.fromMap(json.encode(user.toJson()))
+        // I tried even the manual way like {'first_name': 'sample',...}
+        // i also enclosed it in json encode but still the same error
       );
 
       print('User created: ${response.data}');
@@ -178,8 +191,8 @@ class _RegisterState extends State<Register> {
                 child: FilledButton(
                   onPressed: () async {
                     User userInfo = User(
-                      firstName: firstNameController.text,
-                      lastName: lastNameController.text,
+                      first_name: firstNameController.text,
+                      last_name: lastNameController.text,
                       birthday: birthdayController.text,
                       gender: genderController.text,
                       mobile: mobileController.text,
