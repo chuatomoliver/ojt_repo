@@ -1,12 +1,8 @@
-import 'dart:convert';
-
-import 'package:audit_finance_app/models/user_information.dart';
+import 'package:audit_finance_app/dio/dio_requests.dart';
 import 'package:audit_finance_app/screens/cplus_register.dart';
 import 'package:audit_finance_app/screens/homepage.dart';
 import 'package:audit_finance_app/widgets/login_widgets.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -18,28 +14,6 @@ class Login extends StatefulWidget {
 var userInfo;
 
 class _LoginState extends State<Login> {
-  final dio = Dio(
-    BaseOptions(
-      baseUrl: 'http://localhost/api/v1/index.php',
-    ),
-  );
-  Future<int?> checkUserInfo(String firstName, String lastName) async {
-    final response = await dio.get(
-      '/checkUserExist',
-      queryParameters: {'first_name': firstName, 'last_name': lastName},
-    );
-    userInfo = UserInfo.fromJson(response.data);
-    // debugPrint(userInfo.error.toString());
-
-    return response.statusCode;
-  }
-
-  @override
-  void initState() {
-    // checkUserInfo('test', 'test');
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     final usernameController = TextEditingController();
@@ -66,7 +40,7 @@ class _LoginState extends State<Login> {
               padding: const EdgeInsets.only(top: 30),
               //PASSWORD GOES HERE
               child: textFormField(
-                textEditingController: usernameController,
+                textEditingController: passwordController,
                 hint: 'Enter your password',
                 obscureText: false,
               ),
@@ -84,38 +58,24 @@ class _LoginState extends State<Login> {
               child: filledButton(
                 text: 'Login',
                 onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Homepage(),
-                    ),
-                    ModalRoute.withName('/'),
+                  DioRequests()
+                      .checkUserInfo(
+                          usernameController.text, passwordController.text)
+                      .then(
+                    (value) {
+                      if (value > 0) {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Homepage(),
+                          ),
+                          ModalRoute.withName('/'),
+                        );
+                      } else {
+                        print('NO DATA');
+                      }
+                    },
                   );
-                  // checkUserInfo('test', 'test');
-                  // checkUserInfo(
-                  //   usernameController.text,
-                  //   passwordController.text,
-                  // ).then(
-                  //   (value) {
-                  //     debugPrint(value.toString());
-                  //     if (value == 200) {
-                  //       if (!userInfo.error) {
-                  //         Navigator.pushAndRemoveUntil(
-                  //           context,
-                  //           MaterialPageRoute(
-                  //             builder: (context) => const Homepage(),
-                  //           ),
-                  //           ModalRoute.withName('/'),
-                  //         );
-                  //       } else {
-                  //         debugPrint('NO DATA');
-                  //       }
-                  //     } else {
-                  //       debugPrint(
-                  //           'Failed to get user info. Status code: $value');
-                  //     }
-                  //   },
-                  // );
                 },
               ),
             ),

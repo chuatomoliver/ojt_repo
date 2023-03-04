@@ -79,7 +79,7 @@ class _PermissionsState extends State<Permissions> {
               child: filledButton(
                 text: 'Allow',
                 onPressed: () {
-                  statesData.permissionRequest(permissions[x]).then((value) {
+                  statesData.permissionChecker(permissions[x]).then((value) {
                     if (value) {
                       if (x < permissions.length - 1) {
                         increment();

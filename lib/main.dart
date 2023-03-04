@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
         primarySwatch: Colors.blueGrey,
       ),
-      home: const Login(),
+      home: const LandingPage(),
     );
   }
 }

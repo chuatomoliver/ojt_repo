@@ -3,23 +3,33 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/states.dart';
 
 class Profile {
-  Widget profileBody(
-      Function cameraPermission, BuildContext context, Function function) {
+  Widget profileBody(BuildContext context, Function function) {
     final imagePicker = ImagePicker();
     final statesData = Provider.of<States>(context, listen: false);
+    int x = 0;
 
-    Future<void> getImage(
-      ImageSource imageSource,
-    ) async {
-      cameraPermission();
+    Future<void> getImage(ImageSource imageSource) async {
+      if (x == 0) {
+        if (await statesData.permissionChecker(Permission.camera)) {
+          x++;
+        }
+      }
+
+      if (x < 2) {
+        if (await statesData
+            .permissionChecker(Permission.manageExternalStorage)) {
+          x++;
+        }
+      }
 
       final XFile? image = await imagePicker.pickImage(source: imageSource);
-      const String folderName = "CONTACT IMAGES";
+      const String folderName = "PROFILE IMAGES";
       final dir = Directory('/storage/emulated/0/$folderName');
 
       if (image == null) return;

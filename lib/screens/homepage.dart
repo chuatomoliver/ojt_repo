@@ -20,61 +20,44 @@ class _HomepageState extends State<Homepage> {
   List<Contact>? contacts;
   var index = 1;
 
-  Future<bool> permissionRequest(Permission permission) async {
-    if (await permission.isGranted) {
-      return true;
-    } else {
-      var result = await permission.request();
-      if (result == PermissionStatus.granted) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }
-
-  void cameraPermission() async {
-    if (!await Permission.camera.status.isGranted) {
-      permissionRequest(Permission.camera);
-      if (!await permissionRequest(Permission.manageExternalStorage)) {
-        permissionRequest(Permission.manageExternalStorage);
-      }
-    }
-  }
+  // void cameraPermission() async {
+  //   if (!await Permission.camera.status.isGranted) {
+  //     permissionRequest(Permission.camera);
+  //     if (!await permissionRequest(Permission.manageExternalStorage)) {
+  //       permissionRequest(Permission.manageExternalStorage);
+  //     }
+  //   }
+  // }
 
   Future<bool> getPhoneContacts() async {
-    if (!await Permission.contacts.status.isGranted) {
-      if (await permissionRequest(Permission.contacts)) {
-        contacts = await FlutterContacts.getContacts(
-            withProperties: true, withPhoto: true);
-        setState(() {});
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      contacts = await FlutterContacts.getContacts(
-          withProperties: true, withPhoto: true);
-      setState(() {});
+    final statesData = Provider.of<States>(context, listen: false);
+
+    if (await statesData.permissionChecker(Permission.contacts)) {
+      getContacts();
       return true;
+    } else {
+      return false;
     }
+  }
+
+  void getContacts() async {
+    contacts = await FlutterContacts.getContacts(
+        withProperties: true, withPhoto: true);
+    setState(() {});
   }
 
   Future<void> getLocation() async {
-    if (!await Permission.location.status.isGranted) {
-      if (!await permissionRequest(Permission.location)) {
-        return;
-      }
+    final statesData = Provider.of<States>(context, listen: false);
+    if (await statesData.permissionChecker(Permission.location)) {
+      loc.Location location = loc.Location();
+      // var currentLocation = location.getLocation().;
+      loc.LocationData whereYou;
+      whereYou = await location.getLocation();
+      // print('-------------------------------------------------------------');
+      // print('Latitude: ${whereYou.latitude} | Longitude: ${whereYou.longitude}');
+      // print('-------------------------------------------------------------');
+      // var loc = location.Location
     }
-
-    loc.Location location = loc.Location();
-    // var currentLocation = location.getLocation().;
-    loc.LocationData whereYou;
-    whereYou = await location.getLocation();
-    // print('-------------------------------------------------------------');
-    // print('Latitude: ${whereYou.latitude} | Longitude: ${whereYou.longitude}');
-    // print('-------------------------------------------------------------');
-    // var loc = location.Location
   }
 
   @override
@@ -86,7 +69,6 @@ class _HomepageState extends State<Homepage> {
         statesData.contactPermission = true;
       }
     });
-    // getLocation();
   }
 
   @override
@@ -97,28 +79,26 @@ class _HomepageState extends State<Homepage> {
           ? Contacts().contactBody(contacts, statesData.contactPermission)
           : index == 1
               ? homepageBody()
-              : Profile().profileBody(cameraPermission, context, () {
+              : Profile().profileBody(context, () {
                   setState(() {});
                 }),
       extendBody: true,
       bottomNavigationBar: FloatingNavbar(
         currentIndex: index,
         onTap: (int val) {
-          setState(
-            () {
-              switch (val) {
-                case 0:
-                  index = 0;
-                  break;
-                case 1:
-                  index = 1;
-                  break;
-                case 2:
-                  index = 2;
-                  break;
-              }
-            },
-          );
+          setState(() {
+            switch (val) {
+              case 0:
+                index = 0;
+                break;
+              case 1:
+                index = 1;
+                break;
+              case 2:
+                index = 2;
+                break;
+            }
+          });
         },
         items: [
           FloatingNavbarItem(icon: Icons.contacts),
