@@ -1,13 +1,14 @@
 import 'package:audit_finance_app/providers/states.dart';
 import 'package:audit_finance_app/screens/cplus_landingpage.dart';
-import 'package:audit_finance_app/screens/cplus_login.dart';
-import 'package:audit_finance_app/screens/cplus_register.dart';
-import 'package:audit_finance_app/screens/permissions.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(
     MultiProvider(
       providers: [

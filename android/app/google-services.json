@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "568997788615",
+    "project_id": "sample-project-df531",
+    "storage_bucket": "sample-project-df531.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568997788615:android:00730a60d65e74c53f77e2",
+        "android_client_info": {
+          "package_name": "com.example.audit_finance_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "568997788615-39lhn9vhrc11auejuphn6jl7rscbvivi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwgmfHnfbPZcZO6kUhdTSn9ZkSWWtEfgk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "568997788615-39lhn9vhrc11auejuphn6jl7rscbvivi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
