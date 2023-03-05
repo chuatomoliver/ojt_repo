@@ -1,25 +1,20 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class States extends ChangeNotifier {
-  File? image;
   bool contactPermission = false;
   int screen = 0;
 
-  // Future<bool> permissionRequest(Permission permission) async {
-  //   var status = await permission.request();
+  File? imageShow;
+  File? imageEntry;
+  final imagePicker = ImagePicker();
 
-  //   if (status == PermissionStatus.denied) {
-  //     return false;
-  //   } else if (status == PermissionStatus.permanentlyDenied) {
-  //     openAppSettings();
-  //     return status.isGranted;
-  //   } else {
-  //     return true;
-  //   }
-  // }
+  XFile? image;
+  String path = '';
 
   Future<bool> permissionChecker(Permission permission) async {
     if (await permission.status.isDenied) {
@@ -36,5 +31,39 @@ class States extends ChangeNotifier {
     } else {
       return true;
     }
+  }
+
+  Future<void> getImage(ImageSource imageSource) async {
+    int x = 0;
+    if (x == 0) {
+      if (await permissionChecker(Permission.camera)) {
+        x++;
+      }
+    }
+
+    if (x < 2) {
+      if (await permissionChecker(Permission.manageExternalStorage)) {
+        x++;
+      }
+    }
+
+    image = await imagePicker.pickImage(source: imageSource);
+    const String folderName = "PROFILE IMAGES";
+    final dir = Directory('/storage/emulated/0/$folderName');
+
+    if (image == null) return;
+
+    String fileName = basenameWithoutExtension(image!.path);
+    if (!(await dir.exists())) {
+      dir.create();
+    }
+    path = join(dir.path, fileName);
+  }
+
+  Future<void> setProfileImage() async {
+    await image!.saveTo('$path.png');
+    imageShow = File('$path.png');
+    image = null;
+    notifyListeners();
   }
 }

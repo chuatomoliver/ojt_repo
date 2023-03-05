@@ -1,4 +1,6 @@
 import 'package:audit_finance_app/dio/dio_requests.dart';
+import 'package:audit_finance_app/firebase/firebase_crud.dart';
+import 'package:audit_finance_app/models/journal.dart';
 import 'package:audit_finance_app/screens/cplus_register.dart';
 import 'package:audit_finance_app/screens/homepage.dart';
 import 'package:audit_finance_app/widgets/login_widgets.dart';
@@ -58,24 +60,30 @@ class _LoginState extends State<Login> {
               child: filledButton(
                 text: 'Login',
                 onPressed: () {
-                  DioRequests()
-                      .checkUserInfo(
-                          usernameController.text, passwordController.text)
-                      .then(
-                    (value) {
-                      if (value > 0) {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Homepage(),
-                          ),
-                          ModalRoute.withName('/'),
-                        );
-                      } else {
-                        print('NO DATA');
-                      }
-                    },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Homepage(),
+                    ),
                   );
+                  // DioRequests()
+                  //     .checkUserInfo(
+                  //         usernameController.text, passwordController.text)
+                  //     .then(
+                  //   (value) {
+                  //     if (value > 0) {
+                  //       Navigator.pushAndRemoveUntil(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //           builder: (context) => const Homepage(),
+                  //         ),
+                  //         ModalRoute.withName('/'),
+                  //       );
+                  //     } else {
+                  //       print('NO DATA');
+                  //     }
+                  //   },
+                  // );
                 },
               ),
             ),

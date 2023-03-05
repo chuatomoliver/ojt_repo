@@ -138,19 +138,20 @@ class _RegisterState extends State<Register> {
                 height: 50,
                 child: FilledButton(
                   onPressed: () async {
-                    DioRequests()
-                        .registerUser(
-                      Payload(
-                        first_name: firstNameController.text,
-                        last_name: lastNameController.text,
-                        birthday: birthdayController.text,
-                        gender: genderController.text,
-                        mobile: mobileController.text,
-                      ),
-                    )
-                        .then((value) {
-                      Navigator.pop(context);
-                    });
+                    // DioRequests()
+                    //     .registerUser(
+                    //   Payload(
+                    //     first_name: firstNameController.text,
+                    //     last_name: lastNameController.text,
+                    //     birthday: birthdayController.text,
+                    //     gender: genderController.text,
+                    //     mobile: mobileController.text,
+                    //   ),
+                    // )
+                    //     .then((value) {
+                    //   Navigator.pop(context);
+                    // });
+                    Navigator.pop(context);
                   },
                   child: const Text(
                     'Register',
