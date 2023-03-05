@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../providers/states.dart';
 import '../screens/contacts.dart';
 import '../screens/profile.dart';
+import '../screens/diary.dart';
 import 'package:location/location.dart' as loc;
 
 class Homepage extends StatefulWidget {
@@ -76,12 +77,14 @@ class _HomepageState extends State<Homepage> {
     final statesData = Provider.of<States>(context, listen: false);
     return Scaffold(
       body: index == 0
-          ? Contacts().contactBody(contacts, statesData.contactPermission)
+          ? Diary().diaryBody(context)
           : index == 1
-              ? homepageBody()
-              : Profile().profileBody(context, () {
-                  setState(() {});
-                }),
+              ? Contacts().contactBody(contacts, statesData.contactPermission)
+              : index == 2
+                  ? homepageBody()
+                  : Profile().profileBody(context, () {
+                      setState(() {});
+                    }),
       extendBody: true,
       bottomNavigationBar: FloatingNavbar(
         currentIndex: index,
@@ -97,10 +100,14 @@ class _HomepageState extends State<Homepage> {
               case 2:
                 index = 2;
                 break;
+              case 3:
+                index = 3;
+                break;
             }
           });
         },
         items: [
+          FloatingNavbarItem(icon: Icons.book_rounded),
           FloatingNavbarItem(icon: Icons.contacts),
           FloatingNavbarItem(icon: Icons.location_on),
           FloatingNavbarItem(icon: Icons.person),

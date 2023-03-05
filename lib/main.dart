@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/homepage.dart';
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
         ),
         primarySwatch: Colors.blueGrey,
       ),
-      home: const LandingPage(),
+      home: const Homepage(),
     );
   }
 }
