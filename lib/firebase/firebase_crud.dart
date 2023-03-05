@@ -13,6 +13,7 @@ class FirebaseCRUD {
   // READ ALL DATA
   Stream<List<Journal>> readEntries() => FirebaseFirestore.instance
       .collection('journal')
+      .orderBy('date', descending: true)
       .snapshots()
       .map((snaphot) =>
           snaphot.docs.map((entry) => Journal.fromJson(entry.data())).toList());

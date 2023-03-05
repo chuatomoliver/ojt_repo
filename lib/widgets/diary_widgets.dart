@@ -49,13 +49,22 @@ Widget buildEntry(BuildContext context, Journal entry) {
           Row(
             children: [
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Text(
-                    entry.title,
-                    style: const TextStyle(
-                        fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Text(
+                        entry.title,
+                        style: const TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Text(entry.date),
+                    ),
+                  ],
                 ),
               ),
               PopupMenuButton(
@@ -82,10 +91,6 @@ Widget buildEntry(BuildContext context, Journal entry) {
                 },
               ),
             ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Text(entry.date),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(5, 15, 5, 0),
