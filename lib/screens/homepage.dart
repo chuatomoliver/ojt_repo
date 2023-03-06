@@ -1,3 +1,4 @@
+import 'package:audit_finance_app/widgets/diary_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
@@ -87,6 +88,10 @@ class _HomepageState extends State<Homepage> {
                     }),
       extendBody: true,
       bottomNavigationBar: FloatingNavbar(
+        backgroundColor: Colors.lightGreen[800],
+        selectedItemColor: Colors.lightGreen[800],
+        itemBorderRadius: 25,
+        borderRadius: 25,
         currentIndex: index,
         onTap: (int val) {
           setState(() {
@@ -121,8 +126,13 @@ const LatLng sourceLocation = LatLng(14.485120, 121.230820);
 const LatLng destination = LatLng(14.885120, 121.430820);
 
 Widget homepageBody() {
-  return Center(
-    child: GoogleMap(
+  return Scaffold(
+    appBar: AppBar(
+      title: appBarText(text: 'Maps'),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+    ),
+    body: GoogleMap(
       initialCameraPosition:
           const CameraPosition(target: sourceLocation, zoom: 14.5),
       markers: {

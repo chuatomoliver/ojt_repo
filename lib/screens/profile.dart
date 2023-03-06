@@ -1,3 +1,4 @@
+import 'package:audit_finance_app/widgets/diary_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -40,72 +41,99 @@ class Profile {
     //   function();
     // }
 
-    return Center(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 40.0),
-            child: Stack(
-              alignment: Alignment.bottomRight,
-              children: [
-                CircleAvatar(
-                  radius: 100,
-                  backgroundImage: statesData.imageShow == null
-                      ? null
-                      : FileImage(statesData.imageShow!),
+    return Scaffold(
+      appBar: AppBar(
+        title: appBarText(text: 'My Profile'),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 40.0),
+                child: Stack(
+                  alignment: Alignment.bottomRight,
+                  children: [
+                    CircleAvatar(
+                      radius: 100,
+                      backgroundColor: Colors.lightGreen[800],
+                      backgroundImage: statesData.imageShow == null
+                          ? null
+                          : FileImage(statesData.imageShow!),
+                    ),
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.grey[300],
+                      child: PopupMenuButton(
+                        icon: const Icon(Icons.camera_alt),
+                        itemBuilder: (BuildContext context) {
+                          return const [
+                            PopupMenuItem(
+                              value: 0,
+                              child: Text('Take photo'),
+                            ),
+                            PopupMenuItem(
+                              value: 1,
+                              child: Text('Choose image..'),
+                            ),
+                          ];
+                        },
+                        onSelected: (value) {
+                          switch (value) {
+                            case 0:
+                              statesData
+                                  .getImage(ImageSource.camera)
+                                  .then((value) {
+                                statesData
+                                    .setProfileImage()
+                                    .then((value) => function());
+                              });
+
+                              break;
+                            case 1:
+                              statesData
+                                  .getImage(ImageSource.gallery)
+                                  .then((value) {
+                                statesData
+                                    .setProfileImage()
+                                    .then((value) => function());
+                              });
+
+                              break;
+                          }
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                CircleAvatar(
-                  radius: 30,
-                  backgroundColor: Colors.grey[300],
-                  child: PopupMenuButton(
-                    icon: const Icon(Icons.camera_alt),
-                    itemBuilder: (BuildContext context) {
-                      return const [
-                        PopupMenuItem(
-                          value: 0,
-                          child: Text('Take photo'),
-                        ),
-                        PopupMenuItem(
-                          value: 1,
-                          child: Text('Choose image..'),
-                        ),
-                      ];
-                    },
-                    onSelected: (value) {
-                      switch (value) {
-                        case 0:
-                          statesData.getImage(ImageSource.camera).then((value) {
-                            statesData
-                                .setProfileImage()
-                                .then((value) => function());
-                          });
-
-                          break;
-                        case 1:
-                          statesData
-                              .getImage(ImageSource.gallery)
-                              .then((value) {
-                            statesData
-                                .setProfileImage()
-                                .then((value) => function());
-                          });
-
-                          break;
-                      }
-                    },
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 30, bottom: 10),
+                child: Text(
+                  style: TextStyle(fontSize: 20),
+                  'Firstname Lastname',
+                ),
+              ),
+              sizedBoxSpacer(
+                height: 10,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * .12,
+                width: MediaQuery.of(context).size.width * .92,
+                child: Card(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text('Details goes here'),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              )
+            ],
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 30, bottom: 10),
-            child: Text(
-              style: TextStyle(fontSize: 26),
-              'Firstname Lastname',
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

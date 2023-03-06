@@ -54,8 +54,8 @@ Widget filledButton({
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Colors.red,
-            Colors.purple,
+            Colors.lightGreen,
+            Colors.green,
           ],
         ),
       ),
@@ -89,8 +89,8 @@ Widget titleText() {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: <Color>[
-              Colors.red,
-              Colors.purple,
+              Colors.lightGreen,
+              Colors.green,
               //add more color here.
             ],
           ).createShader(
@@ -127,8 +127,8 @@ Widget themedText({required text, required TextDecoration textDecor}) {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: <Color>[
-            Colors.red,
-            Colors.purple,
+            Colors.lightGreen,
+            Colors.green,
             //add more color here.
           ],
         ).createShader(

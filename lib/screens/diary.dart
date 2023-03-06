@@ -8,18 +8,10 @@ class Diary {
   Widget diaryBody(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Moments',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: appBarText(text: 'Moments'),
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
       ),
-      backgroundColor: Colors.grey[300],
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: StreamBuilder<List<Journal>>(
@@ -54,7 +46,7 @@ class Diary {
               MaterialPageRoute(builder: (context) => const DiaryEntry()),
             );
           },
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.lightGreen[800],
           child: const Icon(Icons.add),
         ),
       ),

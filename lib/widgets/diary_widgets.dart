@@ -12,6 +12,33 @@ import 'package:path/path.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
+Widget appBarText({required String text}) {
+  return Text(
+    text,
+    style: TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.bold,
+      foreground: Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: <Color>[
+            Colors.lightGreen,
+            Colors.green,
+            //add more color here.
+          ],
+        ).createShader(
+          const Rect.fromLTWH(
+            0.0,
+            0.0,
+            400.0,
+            100.0,
+          ),
+        ),
+    ),
+  );
+}
+
 Widget diaryTextField(
     {required TextEditingController controller, required String label}) {
   return Padding(

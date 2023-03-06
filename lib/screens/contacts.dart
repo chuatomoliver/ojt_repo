@@ -3,17 +3,13 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 
+import '../widgets/diary_widgets.dart';
+
 class Contacts {
   Widget contactBody(List<Contact>? contacts, bool contactPermission) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-          ),
-          'Contacts',
-        ),
+        title: appBarText(text: 'Contacts'),
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
