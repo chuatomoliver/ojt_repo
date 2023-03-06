@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-Duration duration = Duration();
+Duration duration = const Duration();
 
+//TIMER
 Widget timer() {
   String twoDigits(int n) => n.toString().padLeft(2, '0');
   final minutes = twoDigits(duration.inMinutes.remainder(60));
@@ -9,7 +10,7 @@ Widget timer() {
 
   return Text(
     '$minutes:$seconds',
-    style: TextStyle(
+    style: const TextStyle(
       fontSize: 20,
     ),
   );
