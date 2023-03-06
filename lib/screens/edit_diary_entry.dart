@@ -104,6 +104,7 @@ class _DiaryEntryState extends State<EditDiaryEntry> {
               Column(
                 children: [
                   filledButton(
+                    width: 200,
                     text: 'Post',
                     onPressed: () {
                       // ADD ENTRY TO FIREBASE
@@ -132,8 +133,9 @@ class _DiaryEntryState extends State<EditDiaryEntry> {
                       Navigator.pop(context);
                     },
                   ),
-                  sizedBoxSpacer(height: 10),
+                  heightSpacer(height: 10),
                   filledButton(
+                    width: 200,
                     text: 'Back',
                     onPressed: () {
                       statesData.imageEntry = null;

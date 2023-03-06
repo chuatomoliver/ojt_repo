@@ -38,6 +38,7 @@ Widget textFormField({
 Widget filledButton({
   required String text,
   required void Function() onPressed,
+  required double width,
 }) {
   return FilledButton(
     style: FilledButton.styleFrom(
@@ -61,7 +62,7 @@ Widget filledButton({
       ),
       child: Container(
         height: 50,
-        width: 300,
+        width: width,
         alignment: Alignment.center,
         child: Text(
           style: const TextStyle(

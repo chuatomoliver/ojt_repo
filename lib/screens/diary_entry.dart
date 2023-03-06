@@ -105,6 +105,7 @@ class _DiaryEntryState extends State<DiaryEntry> {
               Column(
                 children: [
                   filledButton(
+                    width: 200,
                     text: 'Post',
                     onPressed: () {
                       DateTime now = DateTime.now();
@@ -131,8 +132,9 @@ class _DiaryEntryState extends State<DiaryEntry> {
                       Navigator.pop(context);
                     },
                   ),
-                  sizedBoxSpacer(height: 10),
+                  heightSpacer(height: 10),
                   filledButton(
+                    width: 200,
                     text: 'Back',
                     onPressed: () {
                       statesData.imageEntry = null;

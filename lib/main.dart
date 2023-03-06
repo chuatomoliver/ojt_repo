@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
           systemOverlayStyle:
               SystemUiOverlayStyle(statusBarColor: Colors.transparent),
         ),
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.lightGreen,
       ),
       home: const LandingPage(),
     );

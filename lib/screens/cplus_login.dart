@@ -58,6 +58,7 @@ class _LoginState extends State<Login> {
               padding: const EdgeInsets.only(top: 80),
               //LOGIN BUTTON
               child: filledButton(
+                width: 200,
                 text: 'Login',
                 onPressed: () {
                   Navigator.push(
@@ -91,9 +92,10 @@ class _LoginState extends State<Login> {
               padding: const EdgeInsets.only(top: 20, bottom: 50),
               //REGISTER BUTTON
               child: SizedBox(
-                width: 300,
+                width: 200,
                 height: 50,
                 child: filledButton(
+                  width: 200,
                   text: 'Register',
                   onPressed: () {
                     Navigator.push(

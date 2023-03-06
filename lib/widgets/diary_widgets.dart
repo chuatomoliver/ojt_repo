@@ -56,9 +56,15 @@ Widget diaryTextField(
   );
 }
 
-Widget sizedBoxSpacer({required double height}) {
+Widget heightSpacer({required double height}) {
   return SizedBox(
     height: height,
+  );
+}
+
+Widget widthSpacer({required double width}) {
+  return SizedBox(
+    width: width,
   );
 }
 

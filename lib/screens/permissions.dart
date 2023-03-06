@@ -77,6 +77,7 @@ class _PermissionsState extends State<Permissions> {
             Padding(
               padding: const EdgeInsets.only(top: 40),
               child: filledButton(
+                width: 200,
                 text: 'Allow',
                 onPressed: () {
                   statesData.permissionChecker(permissions[x]).then((value) {

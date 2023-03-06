@@ -1,11 +1,16 @@
 import 'package:audit_finance_app/widgets/diary_widgets.dart';
+import 'package:audit_finance_app/widgets/profile_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/states.dart';
+import '../widgets/login_widgets.dart';
 
 class Profile {
+  //PLACEHOLDER TIME
+  TimeOfDay time = TimeOfDay(hour: 10, minute: 30);
+
   Widget profileBody(BuildContext context, void Function() function) {
     // final imagePicker = ImagePicker();
     final statesData = Provider.of<States>(context, listen: false);
@@ -116,21 +121,43 @@ class Profile {
                   'Firstname Lastname',
                 ),
               ),
-              sizedBoxSpacer(
+              heightSpacer(
                 height: 10,
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * .12,
-                width: MediaQuery.of(context).size.width * .92,
-                child: Card(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text('Details goes here'),
-                    ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    textAlign: TextAlign.center,
+                    'Alarm is set\n${time.hour}:${time.minute}',
                   ),
-                ),
-              )
+                  widthSpacer(width: 100),
+                  //TIMER GOES HERE
+                  timer(),
+                ],
+              ),
+              heightSpacer(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  filledButton(
+                    width: 150,
+                    text: 'Set Alarm',
+                    onPressed: () async {
+                      showTimePicker(
+                        context: context,
+                        initialTime: time,
+                      );
+                    },
+                  ),
+                  widthSpacer(width: 20),
+                  filledButton(
+                    width: 150,
+                    text: 'Set Timer',
+                    onPressed: () {},
+                  ),
+                ],
+              ),
             ],
           ),
         ),
