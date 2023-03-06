@@ -20,7 +20,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   List<Contact>? contacts;
-  var index = 0;
+  var index = 3;
 
   // void cameraPermission() async {
   //   if (!await Permission.camera.status.isGranted) {

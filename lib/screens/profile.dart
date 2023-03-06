@@ -1,50 +1,21 @@
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:audit_finance_app/api/notification_api.dart';
 import 'package:audit_finance_app/widgets/diary_widgets.dart';
 import 'package:audit_finance_app/widgets/profile_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/states.dart';
 import '../widgets/login_widgets.dart';
 
 class Profile {
-  //PLACEHOLDER TIME
-  TimeOfDay time = TimeOfDay(hour: 10, minute: 30);
-
+  TimeOfDay time = TimeOfDay.now();
   Widget profileBody(BuildContext context, void Function() function) {
     // final imagePicker = ImagePicker();
     final statesData = Provider.of<States>(context, listen: false);
-
-    // Future<void> getImage(ImageSource imageSource) async {
-    //   int x = 0;
-    //   if (x == 0) {
-    //     if (await statesData.permissionChecker(Permission.camera)) {
-    //       x++;
-    //     }
-    //   }
-
-    //   if (x < 2) {
-    //     if (await statesData
-    //         .permissionChecker(Permission.manageExternalStorage)) {
-    //       x++;
-    //     }
-    //   }
-
-    //   final XFile? image = await imagePicker.pickImage(source: imageSource);
-    //   const String folderName = "PROFILE IMAGES";
-    //   final dir = Directory('/storage/emulated/0/$folderName');
-
-    //   if (image == null) return;
-
-    //   String fileName = basenameWithoutExtension(image.path);
-    //   if (!(await dir.exists())) {
-    //     dir.create();
-    //   }
-    //   final path = join(dir.path, fileName);
-    //   await image.saveTo('$path.png');
-    //   statesData.image = File('$path.png');
-    //   function();
-    // }
+    //PLACEHOLDER TIME
 
     return Scaffold(
       appBar: AppBar(
@@ -147,7 +118,23 @@ class Profile {
                       showTimePicker(
                         context: context,
                         initialTime: time,
-                      );
+                      ).then((value) {
+                        DateTime now = DateTime.now();
+                        DateTime alarm = DateTime(
+                          now.year,
+                          now.month,
+                          now.day,
+                          value!.hour,
+                          value.minute,
+                          00,
+                        );
+                        print(value);
+                        AndroidAlarmManager.oneShotAt(
+                          alarm,
+                          0,
+                          alarmNotif,
+                        );
+                      });
                     },
                   ),
                   widthSpacer(width: 20),
@@ -164,4 +151,12 @@ class Profile {
       ),
     );
   }
+}
+
+void alarmNotif() {
+  print('EYYYYY');
+  NotificationApi.showNotificaiton(
+    title: 'ALARM',
+    body: 'Reminder: it is ${DateFormat.jm().format(DateTime.now())}',
+  );
 }
