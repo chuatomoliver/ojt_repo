@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         ),
         primarySwatch: Colors.lightGreen,
       ),
-      home: const LandingPage(),
+      home: const MessagingWidget(),
     );
   }
 }
