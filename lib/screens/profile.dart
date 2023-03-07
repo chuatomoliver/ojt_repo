@@ -2,6 +2,7 @@ import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:audit_finance_app/api/notification_api.dart';
 import 'package:audit_finance_app/widgets/diary_widgets.dart';
 import 'package:audit_finance_app/widgets/profile_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -119,19 +120,20 @@ class Profile {
                         context: context,
                         initialTime: time,
                       ).then((value) {
+                        if (value == null) return;
                         DateTime now = DateTime.now();
                         DateTime alarm = DateTime(
                           now.year,
                           now.month,
                           now.day,
-                          value!.hour,
+                          value.hour,
                           value.minute,
                           00,
                         );
                         print(value);
                         AndroidAlarmManager.oneShotAt(
                           alarm,
-                          0,
+                          2,
                           alarmNotif,
                         );
                       });
@@ -153,10 +155,23 @@ class Profile {
   }
 }
 
-void alarmNotif() {
+void alarmNotif() async {
   print('EYYYYY');
-  NotificationApi.showNotificaiton(
-    title: 'ALARM',
-    body: 'Reminder: it is ${DateFormat.jm().format(DateTime.now())}',
-  );
+  // NotificationApi.showNotificaiton(
+  //   title: 'ALARM',
+  //   body:
+  //       'Reminder: it is ${DateFormat.jm().format(DateTime.now()).toString()}',
+  // );
+  DocumentSnapshot snap = await FirebaseFirestore.instance
+      .collection('userTokens')
+      .doc('user1')
+      .get();
+
+  String token = snap['token'];
+  print(token);
+
+  NotificationApi().getToken();
+  NotificationApi().initInfo();
+  NotificationApi().sendPushMessage(token, 'hello',
+      'Reminder: it is ${DateFormat.jm().format(DateTime.now())}');
 }
