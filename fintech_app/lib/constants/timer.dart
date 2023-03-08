@@ -1,0 +1,1 @@
+const maxSeconds = 59;
