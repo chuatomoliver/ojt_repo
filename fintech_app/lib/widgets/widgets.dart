@@ -115,25 +115,67 @@ Widget dashboardCard({
   required String text,
   required IconData icon,
   required BuildContext context,
+  required void Function() onPressed,
 }) {
   return SizedBox(
     height: 160,
     width: 160,
-    child: OutlinedButton(
-      style: OutlinedButton.styleFrom(
+    child: FilledButton(
+      style: FilledButton.styleFrom(
+        backgroundColor: primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(40),
+          side: const BorderSide(
+            width: 4,
+            color: secondaryColor,
+            style: BorderStyle.solid,
+          ),
         ),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon),
-          columnSpacer(context: context, height: .02),
-          Text(text),
+          Icon(
+            icon,
+            color: secondaryColor,
+            size: 32,
+          ),
+          columnSpacer(
+            context: context,
+            height: .02,
+          ),
+          Text(
+            text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: 'Visby',
+              fontSize: 18,
+              color: secondaryColor,
+            ),
+          ),
         ],
       ),
+    ),
+  );
+}
+
+Widget bottomContainer() {
+  return Container(
+    decoration: const BoxDecoration(
+      color: primaryColor,
+    ),
+    height: 500,
+    width: 500,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        titleText(
+          text: 'Transactions',
+          color: secondaryColor,
+          weight: FontWeight.bold,
+        ),
+      ],
     ),
   );
 }
