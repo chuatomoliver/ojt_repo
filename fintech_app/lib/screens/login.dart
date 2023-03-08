@@ -29,7 +29,29 @@ class _LoginState extends State<Login> {
           ),
           textFormField(
             label: 'Mobile number',
-            icon: Icons.phone,
+            icon: Icons.phone_android_rounded,
+          ),
+          filledButton(
+            context: context,
+            text: 'Login',
+            onPressed: () {},
+          ),
+          Row(
+            children: [
+              smallText(
+                text: 'Dont have an account?',
+                onTap: () {},
+                weight: FontWeight.normal,
+              ),
+              rowSpacer(
+                width: 2,
+              ),
+              smallText(
+                text: 'Register.',
+                onTap: () {},
+                weight: FontWeight.bold,
+              )
+            ],
           ),
         ],
       ),
