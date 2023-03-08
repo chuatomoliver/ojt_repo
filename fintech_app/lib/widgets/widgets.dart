@@ -1,15 +1,15 @@
 import 'package:fintech_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-Widget columnSpacer({required double height}) {
+Widget columnSpacer({required BuildContext context, required double height}) {
   return SizedBox(
-    height: height,
+    height: MediaQuery.of(context).size.height * height,
   );
 }
 
-Widget rowSpacer({required double width}) {
+Widget rowSpacer({required BuildContext context, required double width}) {
   return SizedBox(
-    width: width,
+    width: MediaQuery.of(context).size.width * width,
   );
 }
 
@@ -22,7 +22,7 @@ Widget titleText({
     text,
     style: TextStyle(
       fontFamily: 'Visby',
-      fontSize: 38,
+      fontSize: 32,
       fontWeight: weight,
       height: 1,
       color: color,
@@ -106,6 +106,33 @@ Widget smallText({
         fontWeight: weight,
         color: color,
         fontFamily: 'Visby',
+      ),
+    ),
+  );
+}
+
+Widget dashboardCard({
+  required String text,
+  required IconData icon,
+  required BuildContext context,
+}) {
+  return SizedBox(
+    height: 160,
+    width: 160,
+    child: OutlinedButton(
+      style: OutlinedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(40),
+        ),
+      ),
+      onPressed: () {},
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon),
+          columnSpacer(context: context, height: .02),
+          Text(text),
+        ],
       ),
     ),
   );
