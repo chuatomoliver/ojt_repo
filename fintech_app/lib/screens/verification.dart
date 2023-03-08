@@ -13,11 +13,32 @@ class _VerificationState extends State<Verification> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: filledButton(
-        text: 'text',
-        onPressed: () {},
-        context: context,
-      ),
-    );
+        body: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        titleText(
+          text: 'Verification',
+          color: secondaryColor,
+          weight: FontWeight.normal,
+        ),
+        titleText(
+          text: 'Code',
+          color: secondaryColor,
+          weight: FontWeight.bold,
+        ),
+        filledButton(
+          text: 'text',
+          onPressed: () {},
+          context: context,
+        ),
+        smallText(
+          color: secondaryColor,
+          text: 'text',
+          onTap: () {},
+          weight: FontWeight.normal,
+        ),
+      ],
+    ));
   }
 }
