@@ -52,7 +52,7 @@ class _RegisterState extends State<Register> {
                 width: 2,
               ),
               smallText(
-                text: 'Login.',
+                text: 'Sign In.',
                 onTap: () {},
                 weight: FontWeight.bold,
                 color: tertiaryColor,

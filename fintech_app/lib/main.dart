@@ -1,5 +1,4 @@
 import 'package:fintech_app/constants/colors.dart';
-import 'package:fintech_app/screens/login.dart';
 import 'package:fintech_app/screens/register.dart';
 import 'package:flutter/material.dart';
 

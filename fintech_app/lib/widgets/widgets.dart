@@ -22,9 +22,9 @@ Widget titleText({
     text,
     style: TextStyle(
       fontFamily: 'Visby',
-      fontSize: 38,
+      fontSize: 32,
       fontWeight: weight,
-      height: 1.2,
+      height: 1,
       color: color,
     ),
   );
