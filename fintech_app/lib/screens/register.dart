@@ -43,13 +43,10 @@ class _RegisterState extends State<Register> {
           Row(
             children: [
               smallText(
-                text: 'Already have an account?',
+                text: 'Already have an account? ',
                 onTap: () {},
                 weight: FontWeight.normal,
                 color: secondaryColor,
-              ),
-              rowSpacer(
-                width: 2,
               ),
               smallText(
                 text: 'Sign In.',
