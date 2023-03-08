@@ -42,6 +42,7 @@ class _LoginState extends State<Login> {
                 text: 'Dont have an account?',
                 onTap: () {},
                 weight: FontWeight.normal,
+                color: secondaryColor,
               ),
               rowSpacer(
                 width: 2,
@@ -50,6 +51,7 @@ class _LoginState extends State<Login> {
                 text: 'Register.',
                 onTap: () {},
                 weight: FontWeight.bold,
+                color: tertiaryColor,
               )
             ],
           ),

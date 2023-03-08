@@ -95,6 +95,7 @@ Widget filledButton({
 }
 
 Widget smallText({
+  required Color color,
   required String text,
   required void Function() onTap,
   required FontWeight weight,
@@ -105,7 +106,7 @@ Widget smallText({
       text,
       style: TextStyle(
         fontWeight: weight,
-        color: secondaryColor,
+        color: color,
       ),
     ),
   );
