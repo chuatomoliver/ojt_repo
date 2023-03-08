@@ -1,6 +1,8 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:audit_finance_app/providers/states.dart';
 import 'package:audit_finance_app/screens/messaging_widget.dart';
+import 'package:audit_finance_app/screens/sms_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
         ),
         primarySwatch: Colors.lightGreen,
       ),
-      home: const Homepage(),
+      home: const SMSAuth(),
     );
   }
 }
