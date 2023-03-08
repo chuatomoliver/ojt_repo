@@ -44,11 +44,8 @@ class _LoginState extends State<Login> {
                 weight: FontWeight.normal,
                 color: secondaryColor,
               ),
-              rowSpacer(
-                width: 2,
-              ),
               smallText(
-                text: 'Register.',
+                text: ' Register.',
                 onTap: () {},
                 weight: FontWeight.bold,
                 color: tertiaryColor,
