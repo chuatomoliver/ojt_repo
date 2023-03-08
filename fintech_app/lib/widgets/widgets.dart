@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:fintech_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +24,7 @@ Widget titleText({
       fontFamily: 'Visby',
       fontSize: 38,
       fontWeight: weight,
-      height: 1.2,
+      height: 1,
       color: color,
     ),
   );
@@ -107,6 +105,7 @@ Widget smallText({
       style: TextStyle(
         fontWeight: weight,
         color: color,
+        fontFamily: 'Visby',
       ),
     ),
   );
