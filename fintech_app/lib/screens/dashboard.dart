@@ -32,7 +32,7 @@ class _DashboardState extends State<Dashboard> {
               color: Colors.transparent,
               borderRadius: BorderRadius.circular(40),
               border: Border.all(
-                width: 4,
+                width: 3,
                 color: secondaryColor,
               ),
             ),

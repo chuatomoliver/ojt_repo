@@ -132,7 +132,7 @@ Widget dashboardCard({
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(40),
           side: BorderSide(
-            width: 4,
+            width: 3,
             color: outlineColor,
             style: BorderStyle.solid,
           ),
