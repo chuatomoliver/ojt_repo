@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "702239969009",
+    "project_id": "penny-wise-finance-app",
+    "storage_bucket": "penny-wise-finance-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702239969009:android:05681b5ac8a1dd689ea350",
+        "android_client_info": {
+          "package_name": "com.example.fintech_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "702239969009-c2bsilinnpi1eeeqlr56f4vdmkk3dj5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv3C3JoWLdWyjN1T9v4At8FbYATBIQ8s8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "702239969009-c2bsilinnpi1eeeqlr56f4vdmkk3dj5a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
