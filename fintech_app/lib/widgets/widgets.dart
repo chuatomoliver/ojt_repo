@@ -41,29 +41,32 @@ OutlineInputBorder textformBorder() {
 }
 
 Widget textFormField({
-  //required TextEditingController textEditingController,
+  required TextEditingController textEditingController,
   required String label,
   required IconData icon,
+  bool isLimited = false,
+  TextInputType? keyboardType,
 }) {
   return TextFormField(
-    //controller: textEditingController,
-    decoration: InputDecoration(
-      prefixIcon: Icon(icon),
-      filled: true,
-      fillColor: Colors.grey[200],
-      border: textformBorder(),
-      enabledBorder: textformBorder(),
-      focusedBorder: textformBorder(),
-      labelText: label,
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 20,
+      maxLength: isLimited ? 10 : null,
+      controller: textEditingController,
+      keyboardType: keyboardType ?? TextInputType.text,
+      decoration: InputDecoration(
+        prefixIcon: Icon(icon),
+        filled: true,
+        fillColor: Colors.grey[200],
+        border: textformBorder(),
+        enabledBorder: textformBorder(),
+        focusedBorder: textformBorder(),
+        labelText: label,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 20,
+        ),
       ),
-    ),
-    autovalidateMode: AutovalidateMode.onUserInteraction,
-    validator: (value) =>
-        value == null || value.isEmpty ? 'Please enter some text' : null,
-  );
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: (value) =>
+          value == null || value.isEmpty ? 'Please enter some text' : null);
 }
 
 Widget filledButton({
@@ -75,7 +78,7 @@ Widget filledButton({
     height: MediaQuery.of(context).size.height * .06,
     width: MediaQuery.of(context).size.width * .6,
     child: FilledButton(
-      onPressed: () => onPressed,
+      onPressed: onPressed,
       style: FilledButton.styleFrom(
         backgroundColor: tertiaryColor,
       ),
