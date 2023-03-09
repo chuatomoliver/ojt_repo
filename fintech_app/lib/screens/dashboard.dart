@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:fintech_app/constants/colors.dart';
+import 'package:fintech_app/screens/send_money.dart';
 import 'package:fintech_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    final transitionType = ContainerTransitionType.fade;
+    const transitionType = ContainerTransitionType.fadeThrough;
 
     return Scaffold(
       appBar: AppBar(
@@ -37,13 +38,26 @@ class _DashboardState extends State<Dashboard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              dashboardCard(
-                text: 'Send\nMoney',
-                icon: Icons.send_rounded,
-                context: context,
-                onPressed: () {
-                  //OpenContainer(closedBuilder: (), openBuilder: () {},),
-                },
+              OpenContainer(
+                transitionDuration: const Duration(seconds: 4),
+                openBuilder: (context, _) => const SendMoney(),
+                closedBuilder: (
+                  context,
+                  VoidCallback openContainer,
+                ) =>
+                    dashboardCard(
+                  text: 'Send\nMoney',
+                  icon: Icons.send_rounded,
+                  context: context,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SendMoney(),
+                      ),
+                    );
+                  },
+                ),
               ),
               rowSpacer(
                 width: .06,
