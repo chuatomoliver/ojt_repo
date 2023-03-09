@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:fintech_app/constants/colors.dart';
 import 'package:fintech_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,8 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
+    final transitionType = ContainerTransitionType.fade;
+
     return Scaffold(
       appBar: AppBar(
         title: titleText(
@@ -38,7 +41,9 @@ class _DashboardState extends State<Dashboard> {
                 text: 'Send\nMoney',
                 icon: Icons.send_rounded,
                 context: context,
-                onPressed: () {},
+                onPressed: () {
+                  //OpenContainer(closedBuilder: (), openBuilder: () {},),
+                },
               ),
               rowSpacer(
                 width: .06,
