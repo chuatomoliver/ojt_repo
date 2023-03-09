@@ -18,14 +18,17 @@ Widget titleText({
   required Color color,
   required FontWeight weight,
 }) {
-  return Text(
-    text,
-    style: TextStyle(
-      fontFamily: 'Visby',
-      fontSize: 32,
-      fontWeight: weight,
-      height: 1,
-      color: color,
+  return Material(
+    color: Colors.transparent,
+    child: Text(
+      text,
+      style: TextStyle(
+        fontFamily: 'Visby',
+        fontSize: 32,
+        fontWeight: weight,
+        height: 1,
+        color: color,
+      ),
     ),
   );
 }
@@ -116,18 +119,21 @@ Widget dashboardCard({
   required IconData icon,
   required BuildContext context,
   required void Function() onPressed,
+  required Color fillColor,
+  required Color outlineColor,
+  required Color contentColor,
 }) {
   return SizedBox(
     height: 160,
     width: 160,
     child: FilledButton(
       style: FilledButton.styleFrom(
-        backgroundColor: primaryColor,
+        backgroundColor: fillColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(40),
-          side: const BorderSide(
+          side: BorderSide(
             width: 4,
-            color: secondaryColor,
+            color: outlineColor,
             style: BorderStyle.solid,
           ),
         ),
@@ -138,7 +144,7 @@ Widget dashboardCard({
         children: [
           Icon(
             icon,
-            color: secondaryColor,
+            color: contentColor,
             size: 32,
           ),
           columnSpacer(
@@ -148,10 +154,10 @@ Widget dashboardCard({
           Text(
             text,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'Visby',
               fontSize: 18,
-              color: secondaryColor,
+              color: contentColor,
             ),
           ),
         ],
@@ -160,11 +166,11 @@ Widget dashboardCard({
   );
 }
 
+Color bottomBarColor = secondaryColor;
+
 Widget bottomContainer() {
-  return Container(
-    decoration: const BoxDecoration(
-      color: primaryColor,
-    ),
+  return AnimatedContainer(
+    duration: const Duration(seconds: 1),
     height: 500,
     width: 500,
     child: Column(

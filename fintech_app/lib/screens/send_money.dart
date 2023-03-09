@@ -13,21 +13,23 @@ class _SendMoneyState extends State<SendMoney> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 400,
-            width: 400,
-            color: secondaryColor,
-            child: titleText(
-              text: 'Send Money',
-              color: Colors.white,
-              weight: FontWeight.bold,
-            ),
+      backgroundColor: secondaryColor,
+      body: Hero(
+        tag: 'test',
+        child: Container(
+          color: secondaryColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              titleText(
+                text: 'Send Money',
+                color: primaryColor,
+                weight: FontWeight.bold,
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

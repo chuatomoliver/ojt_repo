@@ -1,4 +1,3 @@
-import 'package:animations/animations.dart';
 import 'package:fintech_app/constants/colors.dart';
 import 'package:fintech_app/screens/send_money.dart';
 import 'package:fintech_app/widgets/widgets.dart';
@@ -14,8 +13,6 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    const transitionType = ContainerTransitionType.fadeThrough;
-
     return Scaffold(
       appBar: AppBar(
         title: titleText(
@@ -27,9 +24,28 @@ class _DashboardState extends State<Dashboard> {
         backgroundColor: Colors.transparent,
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(40),
+              border: Border.all(
+                width: 4,
+                color: secondaryColor,
+              ),
+            ),
+            width: MediaQuery.of(context).size.width * .96,
+            height: MediaQuery.of(context).size.height * .32,
+            child: Center(
+              child: titleText(
+                text: '\$9000.00',
+                color: secondaryColor,
+                weight: FontWeight.normal,
+              ),
+            ),
+          ),
           // titleText(
           //   text: 'Dashboard',
           //   color: secondaryColor,
@@ -38,14 +54,12 @@ class _DashboardState extends State<Dashboard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              OpenContainer(
-                transitionDuration: const Duration(seconds: 4),
-                openBuilder: (context, _) => const SendMoney(),
-                closedBuilder: (
-                  context,
-                  VoidCallback openContainer,
-                ) =>
-                    dashboardCard(
+              Hero(
+                tag: 'test',
+                child: dashboardCard(
+                  contentColor: primaryColor,
+                  fillColor: tertiaryColor,
+                  outlineColor: Colors.transparent,
                   text: 'Send\nMoney',
                   icon: Icons.send_rounded,
                   context: context,
@@ -64,6 +78,9 @@ class _DashboardState extends State<Dashboard> {
                 context: context,
               ),
               dashboardCard(
+                outlineColor: secondaryColor,
+                fillColor: Colors.transparent,
+                contentColor: secondaryColor,
                 text: 'Transaction History',
                 icon: Icons.history_rounded,
                 context: context,
