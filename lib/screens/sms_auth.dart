@@ -1,4 +1,4 @@
-import 'package:audit_finance_app/screens/old/home_screen.dart';
+import 'package:audit_finance_app/screens/homepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
@@ -66,9 +66,9 @@ class _SMSAuthState extends State<SMSAuth> {
                   );
                   await auth.signInWithCredential(credential);
                   // ignore: use_build_context_synchronously
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
+                    MaterialPageRoute(builder: (context) => const Homepage()),
                   );
                 } catch (e) {
                   print(e);

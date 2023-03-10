@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
         ),
         primarySwatch: Colors.lightGreen,
       ),
-      home: SMSAuth(),
+      home: const SMSAuth(),
     );
   }
 }
